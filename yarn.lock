@@ -174,7 +174,7 @@
   dependencies:
     tslib "^1.7.1"
 
-"@covalent/core@1.0.0-rc.4", "@covalent/core@^1.0.0-rc.4":
+"@covalent/core@^1.0.0-rc.4":
   version "1.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@covalent/core/-/core-1.0.0-rc.4.tgz#11990106c38233dc4ba8bc6d295847732cd94351"
   dependencies:
@@ -190,22 +190,22 @@
   dependencies:
     "@covalent/core" "^1.0.0-rc.4"
 
-"@covalent/highlight@1.0.0-rc.4":
-  version "1.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@covalent/highlight/-/highlight-1.0.0-rc.4.tgz#1d3c4c17a0aa69cbaf6ad36ae10fafc517997b45"
+"@covalent/highlight@^1.0.0-rc.4":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@covalent/highlight/-/highlight-1.0.0.tgz#b9ed29cd1a14c37f3faa5e5a574f48d6efb6edf0"
   dependencies:
     highlight.js "9.11.0"
     tslib "^1.7.1"
 
-"@covalent/http@1.0.0-rc.4":
-  version "1.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@covalent/http/-/http-1.0.0-rc.4.tgz#e600b2f5066cf4a5d36ebf018a3473673f2615cd"
+"@covalent/http@^1.0.0-rc.4":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@covalent/http/-/http-1.0.0.tgz#a5a787375926f2902798fda5b9e8b8fc939e1404"
   dependencies:
     tslib "^1.7.1"
 
-"@covalent/markdown@1.0.0-rc.4":
-  version "1.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@covalent/markdown/-/markdown-1.0.0-rc.4.tgz#94e8efbf8ffb04907ea4e8d84f30d33592ebafea"
+"@covalent/markdown@^1.0.0-rc.4":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@covalent/markdown/-/markdown-1.0.0.tgz#5ae2c4d1e210bc8ef9c799c07083dce910636792"
   dependencies:
     showdown "1.6.4"
     tslib "^1.7.1"
