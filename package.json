@@ -23,7 +23,7 @@
     "ghpages-deploy": "ng build --base-href /covalent-quickstart/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy"
   },
   "engines": {
-    "node": ">6.12.0",
+    "node": "6.12.1",
     "npm": ">3"
   },
   "repository": "https://github.com/teradata/covalent-quickstart.git",
