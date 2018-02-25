@@ -9,7 +9,6 @@
     "reusable"
   ],
   "scripts": {
-    "preinstall": "npm install -g webdriver-manager@latest",
     "start": "ng serve",
     "e2e": "ng e2e",
     "reinstall": "rm -rf node_modules tmp deploy dist && yarn install && npm rebuild node-sass",
