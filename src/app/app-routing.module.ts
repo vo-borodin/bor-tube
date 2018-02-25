@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
 import { ProductOverviewComponent } from './dashboard-product/overview/overview.component';
 import { ProductStatsComponent } from './dashboard-product/stats/stats.component';
 import { ProductFeaturesComponent } from './dashboard-product/features/features.component';
@@ -27,41 +26,6 @@ const routes: Routes = [
                 path: '',
             },
             {
-                path: 'product',
-                component: DashboardProductComponent,
-                children: [
-                    {
-                        path: '',
-                        component: ProductOverviewComponent
-                    },
-                    {
-                        path: 'stats',
-                        component: ProductStatsComponent
-                    },
-                    {
-                        path: 'features',
-                        children: [
-                            {
-                                path: '',
-                                component: ProductFeaturesComponent
-                            },
-                            {
-                                path: 'add',
-                                component: FeaturesFormComponent
-                            },
-                            {
-                                path: ':id/delete',
-                                component: FeaturesFormComponent
-                            },
-                            {
-                                path: ':id/edit',
-                                component: FeaturesFormComponent
-                            },
-                        ]
-                    },
-                ]
-            },
-            {
                 path: 'item/:id',
                 component: DetailComponent
             },
@@ -72,8 +36,7 @@ const routes: Routes = [
             {
                 path: 'form',
                 component: FormComponent
-            },
-            { path: '', loadChildren: './users/users.module#UsersModule' },
+            }
         ],
     },
 ];
@@ -88,8 +51,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routedComponents: any[] = [
-    MainComponent, LoginComponent,
-    DashboardComponent, DashboardProductComponent,
+    MainComponent, LoginComponent, DashboardComponent,
     FormComponent, LogsComponent, DetailComponent,
     FeaturesFormComponent, ProductFeaturesComponent, ProductOverviewComponent, ProductStatsComponent,
 ];

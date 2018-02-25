@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle( 'Covalent Quickstart' );
+    this._titleService.setTitle( 'Covalent BorTube' );
     this._loadingService.register('items.load');
     this._itemsService.query().subscribe((items: Object[]) => {
       this.items = items;

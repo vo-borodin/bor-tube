@@ -16,6 +16,14 @@ import { SharedModule } from './shared/shared.module';
 
 import { USER_PROVIDER, USERS_API } from './users';
 
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
+         MatSortModule, MatTableModule } from "@angular/material";
+import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
+import { MovietableComponent } from './movietable/movietable.component';
+
+import { MovieService } from '../services/movie.service'
+
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
 ];
@@ -28,6 +36,7 @@ export function getAPI(): string {
   declarations: [
     AppComponent,
     routedComponents,
+    MovietableComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     AppRoutingModule,
@@ -41,12 +50,19 @@ export function getAPI(): string {
     }),
     CovalentHighlightModule,
     CovalentMarkdownModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+	HttpClientModule,
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
     Title, {
       provide: USERS_API, useFactory: getAPI,
     }, USER_PROVIDER,
+	MovieService
   ], // additional providers needed for this module
   entryComponents: [ ],
   bootstrap: [ AppComponent ],

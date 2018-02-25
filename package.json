@@ -1,8 +1,8 @@
 {
-  "name": "covalent-quickstart",
+  "name": "bor-tube",
   "version": "1.0.0",
   "private": true,
-  "description": "Quickstart App with @covalent packages",
+  "description": "BACUP IT applying challenge with @covalent packages",
   "keywords": [
     "angular",
     "components",
@@ -20,23 +20,14 @@
     "webdriver-update": "bash ./node_modules/.bin/webdriver-manager update",
     "test": "ng test --code-coverage --single-run",
     "test:watch": "ng test --code-coverage",
-    "ghpages-deploy": "ng build --base-href /covalent-quickstart/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy"
+    "ghpages-deploy": "ng build --base-href /bor-tube/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy"
   },
   "engines": {
     "node": "6.12.1",
     "npm": ">3"
   },
-  "repository": "https://github.com/teradata/covalent-quickstart.git",
-  "license": "MIT",
-  "author": "Teradata UX",
-  "contributors": [
-    "Kyle Ledbetter <kyle.ledbetter@teradata.com>",
-    "Richa Vyas <richa.vyas@teradata.com>",
-    "Ed Morales <eduardo.morales@teradata.com>",
-    "Jason Weaver <jason.weaver@teradata.com>",
-    "Jeremy Smartt <jeremy.smartt@teradata.com>",
-    "Ilsun Park <ilsun.park@teradata.com>"
-  ],
+  "repository": "https://github.com/vo-borodin/bor-tube.git",
+  "author": "Vsevolod Borodin",
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/cdk": "^5.1.0",
