@@ -9,9 +9,9 @@
     "reusable"
   ],
   "scripts": {
+    "preinstall": "npm install -g webdriver-manager@latest",
     "start": "ng serve",
     "e2e": "ng e2e",
-    "preinstall": "npm install -g wedriver-manager",
     "reinstall": "rm -rf node_modules tmp deploy dist && yarn install && npm rebuild node-sass",
     "reinstall:latest": "rm -rf node_modules tmp deploy dist && npm install",
     "postinstall": "webdriver-manager update && ./scripts/protractor.sh",
