@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '@angular/cdk/collections';
@@ -11,12 +12,15 @@ import { Movie } from '../../models/movie.model';
 })
 export class MovietableComponent implements OnInit {
 
-  dataSource = new MovieDataSource(this.movieService);
+  dataSource: MovieDataSource;
   displayedColumns = ['title'];
+  
+  moviesCount = 0;
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
+	this.dataSource = new MovieDataSource(this.movieService);
   }
 
 }

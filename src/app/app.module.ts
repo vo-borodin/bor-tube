@@ -16,7 +16,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { USER_PROVIDER, USERS_API } from './users';
 
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
+import { MatInputModule, MatProgressSpinnerModule, MatPaginatorModule,
          MatSortModule, MatTableModule } from "@angular/material";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
