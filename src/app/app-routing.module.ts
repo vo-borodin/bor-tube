@@ -5,14 +5,9 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogsComponent } from './logs/logs.component';
 import { DetailComponent } from './detail/detail.component';
-import { LoginComponent } from './login/login.component';
 import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent
-    },
     {
         path: '',
         component: MainComponent,
@@ -47,6 +42,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routedComponents: any[] = [
-    MainComponent, LoginComponent, DashboardComponent,
+    MainComponent, DashboardComponent,
     FormComponent, LogsComponent, DetailComponent,
 ];

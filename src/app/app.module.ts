@@ -14,8 +14,6 @@ import { routedComponents, AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from './shared/shared.module';
 
-import { USER_PROVIDER, USERS_API } from './users';
-
 import { MatInputModule, MatProgressSpinnerModule, MatPaginatorModule,
          MatSortModule, MatTableModule } from "@angular/material";
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -59,9 +57,7 @@ export function getAPI(): string {
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
-    Title, {
-      provide: USERS_API, useFactory: getAPI,
-    }, USER_PROVIDER,
+    Title,
 	MovieService
   ], // additional providers needed for this module
   entryComponents: [ ],
