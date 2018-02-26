@@ -53,12 +53,12 @@ export function getAPI(): string {
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-	HttpClientModule,
+    HttpClientModule,
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
     Title,
-	MovieService
+    MovieService
   ], // additional providers needed for this module
   entryComponents: [ ],
   bootstrap: [ AppComponent ],
