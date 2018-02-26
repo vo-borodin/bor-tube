@@ -5,14 +5,14 @@ import { Movie } from '../models/movie.model';
 
 @Injectable()
 export class MovieService {
-
-  private serviceUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=e2222de09416fb48a1e83f9cd532f0e3';
+  private apiKey = 'e2222de09416fb48a1e83f9cd532f0e3';
+  private serviceUrl = 'https://api.themoviedb.org/3/movie/popular?api_key={{$apiKey}}&page={{$page}}';
 
   constructor(private http: HttpClient) { }
   
-  getMovies(): Observable<Movie[]> {
-	  return this.http.get(this.serviceUrl).map(
-	      (data: any) => data.results
-	  );
+  getMovies(page: Number): Observable<any> {
+	  let url = this.serviceUrl.replace('{{$apiKey}}', this.apiKey);
+	  url = url.replace('{{$page}}', page.toString());
+	  return this.http.get(url);
   }
 }

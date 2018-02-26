@@ -7,7 +7,8 @@
 	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 	<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="moviesCount" [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 15]">
+  <mat-paginator [length]="dataSource.itemsCount$"
+                 [pageSize]="dataSource.itemsPerPage$"
+				 (page)="page = changePage($event)">
   </mat-paginator>
 </div>

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs/Observable';
@@ -14,27 +14,52 @@ export class MovietableComponent implements OnInit {
 
   dataSource: MovieDataSource;
   displayedColumns = ['title'];
-  
-  moviesCount = 0;
 
   constructor(private movieService: MovieService) { }
-
+  
   ngOnInit() {
 	this.dataSource = new MovieDataSource(this.movieService);
   }
 
+  public changePage(event?:PageEvent) {
+	this.dataSource.pageIndex$ = event.pageIndex;
+  }
 }
 
 export class MovieDataSource extends DataSource<any> {
+	itemsPerPage$ = 10
+	pageIndex$ = 1
+	itemsCount$ = 0
 	constructor(private movieService: MovieService) {
 		super();
 	}
 	
 	connect(): Observable<Movie[]> {
-		return this.movieService.getMovies();
+		let moviesRaw = this.movieService.getMovies(this.pageIndex$);
+		let moviesObservable = moviesRaw.map(
+	        (data: any) => {
+				this.itemsPerPage$ = data.results.length;
+				this.itemsCount$ = data.total_results;
+				return data.results;
+			}
+	    );
+		return moviesObservable;
 	}
 	
 	disconnect() {
 		
 	}
 }
+
+
+
+// WEBPACK FOOTER //
+// D:/bor-tube/src/app/movietable/movietable.component.ts
+
+
+// WEBPACK FOOTER //
+// D:/bor-tube/src/app/movietable/movietable.component.ts
+
+
+// WEBPACK FOOTER //
+// D:/bor-tube/src/app/movietable/movietable.component.ts
