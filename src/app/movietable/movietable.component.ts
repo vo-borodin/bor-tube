@@ -16,9 +16,9 @@ import { map } from 'rxjs/operators/map';
 export class MovietableComponent implements OnInit {
 
   displayedColumns = ['title'];
-  itemsCount$ = 0
-  itemsPerPage$ = 10
-  movies = []Movie
+  itemsCount$ = 0;
+  itemsPerPage$ = 10;
+  movies = []Movie;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
