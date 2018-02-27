@@ -36,10 +36,5 @@ export class MovietableComponent implements OnInit {
           this.itemsCount$ = data.total_results;
           return data.results;
       })).subscribe(movies => this.dataSource.data = movies);
-    )
-  }
-
-  public changePage(event?:PageEvent) {
-    this.pageIndex = event.pageIndex;
   }
 }
