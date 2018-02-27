@@ -18,7 +18,7 @@ export class MovietableComponent implements OnInit {
   displayedColumns = ['title'];
   itemsCount$ = 0;
   itemsPerPage$ = 10;
-  movies = []Movie;
+  movies: Movie[];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

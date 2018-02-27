@@ -6,13 +6,15 @@ import { Movie } from '../models/movie.model';
 @Injectable()
 export class MovieService {
   private apiKey = 'e2222de09416fb48a1e83f9cd532f0e3';
-  private serviceUrl = 'https://api.themoviedb.org/3/movie/popular?api_key={{$apiKey}}&page={{$page}}';
+  private serviceUrl = 'https://api.themoviedb.org/3/';
 
   constructor(private http: HttpClient) { }
   
-  getMovies(page: Number): Observable<any> {
-	  let url = this.serviceUrl.replace('{{$apiKey}}', this.apiKey);
-	  url = url.replace('{{$page}}', page.toString());
+  getMovies(pageIndex: Number): Observable<any> {
+	  const page = pageIndex.toString();
+	  const href = this.serviceUrl;
+	  const api_key = this.apiKey;
+	  const url = `${href}movie/popular?api_key=${api_key}&page=${page}`;
 	  return this.http.get(url);
   }
 }
