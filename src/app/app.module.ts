@@ -53,6 +53,7 @@ export function getAPI(): string {
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+	MatGridListModule,
     HttpClientModule,
   ], // modules needed to run this module
   providers: [

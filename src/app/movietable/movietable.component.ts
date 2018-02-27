@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material';
 import { MovieService } from '../../services/movie.service';
+import { Movie } from '../../models/movie.model';
 import { Observable } from 'rxjs/Observable';
 import { merge } from 'rxjs/observable/merge';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-//import { DataSource } from '@angular/cdk/collections';
-import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'movietable',
@@ -17,9 +16,9 @@ import { Movie } from '../../models/movie.model';
 export class MovietableComponent implements OnInit {
 
   displayedColumns = ['title'];
-  itemsCount$ = 0
-  itemsPerPage$ = 10
-  dataSource = new MatTableDataSource();
+  itemsCount$ = 0;
+  itemsPerPage$ = 10;
+  movies: Movie[];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -35,11 +34,6 @@ export class MovietableComponent implements OnInit {
           this.itemsPerPage$ = data.results.length;
           this.itemsCount$ = data.total_results;
           return data.results;
-      })).subscribe(movies => this.dataSource.data = movies);
-    )
-  }
-
-  public changePage(event?:PageEvent) {
-    this.pageIndex = event.pageIndex;
+      })).subscribe(movies => this.movies = movies);
   }
 }
