@@ -30,6 +30,7 @@ export class MovietableComponent implements OnInit {
   
   onModelChange(value) {
     this.searchStr = value;
+    this.paginator.firstPage();
     this.subject.next(value);
   }
   
