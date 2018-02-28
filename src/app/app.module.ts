@@ -20,6 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { MovietableComponent } from './movietable/movietable.component';
 
+import { APP_INITIALIZER } from '@angular/core';
+
 import { MovieService } from '../services/movie.service'
 
 const httpInterceptorProviders: Type<any>[] = [
@@ -28,6 +30,10 @@ const httpInterceptorProviders: Type<any>[] = [
 
 export function getAPI(): string {
   return MOCK_API;
+}
+
+export function init_app(movieService: MovieService) {
+  return () => movieService.load()
 }
 
 @NgModule({
@@ -59,7 +65,13 @@ export function getAPI(): string {
   providers: [
     httpInterceptorProviders,
     Title,
-    MovieService
+    MovieService,
+    {
+      'provide': APP_INITIALIZER,
+      'useFactory': init_app,
+      'deps': [MovieService],
+      'multi': true
+    }
   ], // additional providers needed for this module
   entryComponents: [ ],
   bootstrap: [ AppComponent ],

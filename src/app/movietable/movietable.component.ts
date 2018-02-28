@@ -13,7 +13,8 @@ import { map } from 'rxjs/operators/map';
 @Component({
   selector: 'movietable',
   templateUrl: './movietable.component.html',
-  styleUrls: ['./movietable.component.scss']
+  styleUrls: ['./movietable.component.scss'],
+  providers: [MovieService]
 })
 export class MovietableComponent implements OnInit {
 
@@ -26,7 +27,7 @@ export class MovietableComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {}
   
   onModelChange(value) {
     this.searchStr = value;
