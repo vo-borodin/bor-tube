@@ -30,15 +30,17 @@ export class MovietableComponent implements OnInit {
   
   onModelChange(value) {
     this.searchStr = value;
-    this.paginator.firstPage();
-    this.subject.next(value);
+    this.paginator.pageIndex ?
+      this.paginator.firstPage() :
+      this.subject.next(value);
   }
   
   ngOnInit() {
     merge(this.paginator.page, this.subject).pipe(
       startWith({}),
       switchMap(() => {
-        return this.movieService.getMovies(this.paginator.pageIndex + 1);
+        return this.movieService.getMovies(this.paginator.pageIndex + 1,
+                                           this.searchStr);
       }),
       map(data => {
         this.itemsPerPage$ = data.results.length;

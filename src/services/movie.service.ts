@@ -7,14 +7,23 @@ import { Movie } from '../models/movie.model';
 export class MovieService {
   private apiKey = 'e2222de09416fb48a1e83f9cd532f0e3';
   private serviceUrl = 'https://api.themoviedb.org/3/';
+  private popular = 'movie/popular';
+  private search = 'search/movie';
 
   constructor(private http: HttpClient) { }
   
-  getMovies(pageIndex: Number): Observable<any> {
-	  const page = pageIndex.toString();
-	  const href = this.serviceUrl;
-	  const api_key = this.apiKey;
-	  const url = `${href}movie/popular?api_key=${api_key}&page=${page}`;
-	  return this.http.get(url);
+  getMovies(pageIndex: Number, searchStr: string): Observable<any> {
+	const page = pageIndex.toString();
+	const href = this.serviceUrl;
+	const api_key = this.apiKey;
+    let method: string, params = `api_key=${api_key}&page=${page}`;
+    if (searchStr) {
+      method = this.search;
+      params += `&query=${searchStr}`;
+    } else {
+      method = this.popular;
+    }
+	const url = `${href}${method}?${params}`;
+	return this.http.get(url);
   }
 }
