@@ -22,7 +22,7 @@ export class MovietableComponent implements OnInit {
   itemsPerPage$ = 10;
   movies: Movie[];
   searchStr = "";
-  const subject = new Subject();
+  subject = new Subject();
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
