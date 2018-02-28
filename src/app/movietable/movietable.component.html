@@ -1,4 +1,10 @@
 <div>
+  <mat-form-field>
+    <input #input matInput type="text" [ngModel]="searchStr" (ngModelChange)="onModelChange($event)">
+    <mat-placeholder>
+      Title of movie
+    </mat-placeholder>
+  </mat-form-field>
   <mat-grid-list cols="4" rowHeight="150px">
     <mat-grid-tile *ngFor="let movie of movies">
 	  <mat-grid-tile-footer>
