@@ -19,6 +19,7 @@ import { MatInputModule, MatProgressSpinnerModule, MatPaginatorModule,
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { MovietableComponent } from './movietable/movietable.component';
+import { MoviedialogComponent } from './movietable/moviedialog/moviedialog.component';
 
 import { APP_INITIALIZER } from '@angular/core';
 
@@ -41,6 +42,7 @@ export function init_app(movieService: MovieService) {
     AppComponent,
     routedComponents,
     MovietableComponent,
+    MoviedialogComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     AppRoutingModule,
@@ -73,7 +75,9 @@ export function init_app(movieService: MovieService) {
       'multi': true
     }
   ], // additional providers needed for this module
-  entryComponents: [ ],
+  entryComponents: [
+    MoviedialogComponent,
+  ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {}

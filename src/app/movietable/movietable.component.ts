@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model';
+import { MoviedialogComponent } from "./moviedialog/moviedialog.component";
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { merge } from 'rxjs/observable/merge';
@@ -27,7 +29,8 @@ export class MovietableComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService,
+              public dialog: MatDialog) {}
   
   onModelChange(value) {
     this.searchStr = value;
@@ -47,6 +50,14 @@ export class MovietableComponent implements OnInit {
         this.itemsPerPage$ = data.results.length;
         this.itemsCount$ = data.total_results;
         return data.results;
-      })).subscribe(movies => this.movies = movies);
+      })
+    ).subscribe(movies => this.movies = movies);
+  }
+  
+  openDialog(movie): void {
+    let dialogRef = this.dialog.open(MoviedialogComponent, {
+      width: '300px',
+      data: movie
+    });
   }
 }
