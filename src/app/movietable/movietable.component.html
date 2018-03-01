@@ -10,7 +10,7 @@
       <mat-grid-tile-header class="bor-tube__Movietable_tileHeader">
         {{movieService.getGenresString(movie.genre_ids)}}
       </mat-grid-tile-header>
-      <img [src]="movie.poster_path">
+      <img [src]="pathToPoster300(movie)">
       <mat-grid-tile-footer>
         {{movie.title}}
       </mat-grid-tile-footer>

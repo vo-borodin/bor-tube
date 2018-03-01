@@ -54,10 +54,14 @@ export class MovietableComponent implements OnInit {
     ).subscribe(movies => this.movies = movies);
   }
   
+  pathToPoster300(movie: Movie): string {
+      return MovieService.imageUrl + 'w300' + movie.poster_path;
+  }
+  
   openDialog(movie): void {
     let dialogRef = this.dialog.open(MoviedialogComponent, {
-      width: '300px',
-      data: movie
+      data: movie,
+      width: '700px'
     });
   }
 }

@@ -15,8 +15,8 @@ export class MovieService {
   private config = 'configuration';
   private genre = 'genre/movie/list';
   
-  private static genres: any;
-  private static imageUrl: string;
+  public static genres: any;
+  public static imageUrl: string;
 
   constructor(private http: HttpClient) { }
   
@@ -29,7 +29,7 @@ export class MovieService {
       method = this.genre;
       return this.http.get(`${href}${method}?api_key=${api_key}`).map((data: Response) => {
         MovieService.genres = {};
-        for (let genre:any of data['genres']) {
+        for (let genre of data['genres']) {
           MovieService.genres[genre['id']] = genre['name'];
         }
         return MovieService.genres;
@@ -39,8 +39,8 @@ export class MovieService {
   
   getGenresString(ids: Number[]): string {
     let genres = [];
-    for (let id: Number of ids) {
-      genres.push(MovieService.genres[id]);
+    for (let id of ids) {
+      genres.push(MovieService.genres[id.toString()]);
     }
     return genres.join(', ');
   }
@@ -57,11 +57,6 @@ export class MovieService {
       method = this.popular;
     }
     const url = `${href}${method}?${params}`;
-    return this.http.get(url).map((data: Response) => {
-      for (let res of data['results']) {
-        res.poster_path = MovieService.imageUrl + 'w300' + res.poster_path;
-      }
-      return data;
-    });
+    return this.http.get(url);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { MovieService } from '../../../services/movie.service';
 import { Movie } from '../../../models/movie.model';
 
 @Component({
@@ -16,5 +17,8 @@ export class MoviedialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  
+  pathToPoster300(): string {
+    return MovieService.imageUrl + 'w300' + this.data.poster_path;
+  }
 }
