@@ -13,8 +13,12 @@
     "e2e": "ng e2e",
     "reinstall": "rm -rf node_modules tmp deploy dist && yarn install && npm rebuild node-sass",
     "reinstall:latest": "rm -rf node_modules tmp deploy dist && npm install",
+    "postinstall": "webdriver-manager update && ./scripts/protractor.sh",
     "start-api": "cd mock-api && covalent-data &",
     "stop-api": "pkill covalent-data",
+    "webdriver-update": "bash ./node_modules/.bin/webdriver-manager update",
+    "test": "ng test --code-coverage --single-run",
+    "test:watch": "ng test --code-coverage",
     "ghpages-deploy": "ng build --base-href /bor-tube/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy"
   },
   "engines": {
