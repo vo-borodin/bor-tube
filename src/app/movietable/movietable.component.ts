@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
