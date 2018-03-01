@@ -13,25 +13,42 @@ export class MovieService {
   private popular = 'movie/popular';
   private search = 'search/movie';
   private config = 'configuration';
+  private genre = 'genre/movie/list';
   
+  private static genres: any;
   private static imageUrl: string;
 
   constructor(private http: HttpClient) { }
   
   load() {
-	const href = this.serviceUrl;
-	const api_key = this.apiKey;
-    const method = this.config;
+    const href = this.serviceUrl;
+    const api_key = this.apiKey;
+    let method = this.config;
     return this.http.get(`${href}${method}?api_key=${api_key}`).map((data: Response) => {
       MovieService.imageUrl = data['images'].base_url;
-      return MovieService.imageUrl;
+      method = this.genre;
+      return this.http.get(`${href}${method}?api_key=${api_key}`).map((data: Response) => {
+        MovieService.genres = {};
+        for (let genre:any of data['genres']) {
+          MovieService.genres[genre['id']] = genre['name'];
+        }
+        return MovieService.genres;
+      }).toPromise();
     }).toPromise();
   }
   
+  getGenresString(ids: Number[]): string {
+    let genres = [];
+    for (let id: Number of ids) {
+      genres.push(MovieService.genres[id]);
+    }
+    return genres.join(', ');
+  }
+  
   getMovies(pageIndex: Number, searchStr: string): Observable<any> {
-	const page = pageIndex.toString();
-	const href = this.serviceUrl;
-	const api_key = this.apiKey;
+    const page = pageIndex.toString();
+    const href = this.serviceUrl;
+    const api_key = this.apiKey;
     let method: string, params = `api_key=${api_key}&page=${page}`;
     if (searchStr) {
       method = this.search;
@@ -39,10 +56,10 @@ export class MovieService {
     } else {
       method = this.popular;
     }
-	const url = `${href}${method}?${params}`;
-	return this.http.get(url).map((data: Response) => {
-      for (let res of data["results"]) {
-        res.poster_path = MovieService.imageUrl + "w300" + res.poster_path;
+    const url = `${href}${method}?${params}`;
+    return this.http.get(url).map((data: Response) => {
+      for (let res of data['results']) {
+        res.poster_path = MovieService.imageUrl + 'w300' + res.poster_path;
       }
       return data;
     });

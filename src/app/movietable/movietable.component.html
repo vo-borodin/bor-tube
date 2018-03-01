@@ -7,6 +7,9 @@
   </mat-form-field>
   <mat-grid-list cols="5" rowHeight="4:3" gutterSize="10px">
     <mat-grid-tile *ngFor="let movie of movies" (click)="openDialog(movie)">
+      <mat-grid-tile-header class="bor-tube__Movietable_tileHeader">
+        {{movieService.getGenresString(movie.genre_ids)}}
+      </mat-grid-tile-header>
       <img [src]="movie.poster_path">
       <mat-grid-tile-footer>
         {{movie.title}}
