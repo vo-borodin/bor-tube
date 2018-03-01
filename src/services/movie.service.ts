@@ -40,7 +40,7 @@ export class MovieService {
 	const url = `${href}${method}?${params}`;
 	return this.http.get(url).map(data => {
       for (let res of data["results"]) {
-        res.poster_path = MovieService.imageUrl + "w200" + res.poster_path;
+        res.poster_path = MovieService.imageUrl + "w300" + res.poster_path;
       }
       return data;
     });
