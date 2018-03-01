@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
     {
@@ -13,10 +12,6 @@ const routes: Routes = [
             {
                 component: DashboardComponent,
                 path: '',
-            },
-            {
-                path: 'logs',
-                component: LogsComponent
             }
         ],
     },
@@ -33,5 +28,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routedComponents: any[] = [
     MainComponent, DashboardComponent,
-    LogsComponent,
 ];

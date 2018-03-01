@@ -12,24 +12,8 @@ export class MainComponent {
       title: 'Dashboard',
       route: '/',
       icon: 'dashboard',
-    }, {
-      title: 'Product Dashboard',
-      route: '/product',
-      icon: 'view_quilt',
-    }, {
-      title: 'Product Logs',
-      route: '/logs',
-      icon: 'receipt',
-    }, {
-      title: 'Manage Users',
-      route: '/users',
-      icon: 'people',
     },
   ];
 
   constructor(private _router: Router) {}
-
-  logout(): void {
-    this._router.navigate(['/login']);
-  }
 }
