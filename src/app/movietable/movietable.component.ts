@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -25,6 +24,7 @@ export class MovietableComponent implements OnInit {
   itemsCount$ = 0;
   itemsPerPage$ = 10;
   movies: Movie[];
+  pageIndex = 0;
   searchStr = "";
   subject = new Subject();
   
@@ -35,9 +35,8 @@ export class MovietableComponent implements OnInit {
   
   onModelChange(value) {
     this.searchStr = value;
-    this.paginator.pageIndex ?
-      this.paginator.firstPage() :
-      this.subject.next(value);
+    this.paginator.pageIndex = 0;
+    this.subject.next(value);
   }
   
   ngOnInit() {
