@@ -5,12 +5,13 @@
       Title of movie
     </mat-placeholder>
   </mat-form-field>
-  <mat-grid-list cols="4" rowHeight="150px">
+  <mat-grid-list cols="4" rowHeight="150px" gutterSize="10px">
     <mat-grid-tile *ngFor="let movie of movies">
-	  <mat-grid-tile-footer>
-	    {{movie.title}}
+      <img [src]="movie.poster_path">
+      <mat-grid-tile-footer>
+        {{movie.title}}
       </mat-grid-tile-footer>
-	</mat-grid-tile>
+    </mat-grid-tile>
   </mat-grid-list>
   <mat-paginator [length]="itemsCount$"
                  [pageSize]="itemsPerPage$">

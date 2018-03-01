@@ -4,8 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogsComponent } from './logs/logs.component';
-import { DetailComponent } from './detail/detail.component';
-import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
     {
@@ -17,16 +15,8 @@ const routes: Routes = [
                 path: '',
             },
             {
-                path: 'item/:id',
-                component: DetailComponent
-            },
-            {
                 path: 'logs',
                 component: LogsComponent
-            },
-            {
-                path: 'form',
-                component: FormComponent
             }
         ],
     },
@@ -43,5 +33,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routedComponents: any[] = [
     MainComponent, DashboardComponent,
-    FormComponent, LogsComponent, DetailComponent,
+    LogsComponent,
 ];

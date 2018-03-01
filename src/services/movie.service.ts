@@ -12,7 +12,7 @@ export class MovieService {
   private search = 'search/movie';
   private config = 'configuration';
   
-  private imageUrl: string;
+  private static imageUrl: string;
 
   constructor(private http: HttpClient) { }
   
@@ -21,8 +21,8 @@ export class MovieService {
 	const api_key = this.apiKey;
     const method = this.config;
     return this.http.get(`${href}${method}?api_key=${api_key}`).map(data => {
-      this.imageUrl = data['images'].base_url;
-      return this.imageUrl;
+      MovieService.imageUrl = data['images'].base_url;
+      return MovieService.imageUrl;
     }).toPromise();
   }
   
@@ -38,6 +38,11 @@ export class MovieService {
       method = this.popular;
     }
 	const url = `${href}${method}?${params}`;
-	return this.http.get(url);
+	return this.http.get(url).map(data => {
+      for (let res of data["results"]) {
+        res.poster_path = MovieService.imageUrl + "w200" + res.poster_path;
+      }
+      return data;
+    });
   }
 }
