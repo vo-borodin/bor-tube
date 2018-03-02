@@ -6,11 +6,17 @@
   </mat-checkbox>
   <div layout-gt-xs="row">
     <img [src]="pathToPoster300()">
-      <div layout="column">
+      <div layout="column" class="bor-tube__Moviedialog__header">
         <div layout="row">
-          <h1 class="bor-tube__Moviedialog__header">
+          <h1>
             {{data.title}}
           </h1>
+        </div>
+        <h2>
+          Description:
+        </h2>
+        <div>
+          {{description}}
         </div>
       </div>
   </div>

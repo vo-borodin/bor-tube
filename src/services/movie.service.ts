@@ -14,6 +14,7 @@ export class MovieService {
   private search = 'search/movie';
   private config = 'configuration';
   private genre = 'genre/movie/list';
+  private details = 'movie';
   
   public static genres: any;
   public static imageUrl: string;
@@ -57,6 +58,14 @@ export class MovieService {
       method = this.popular;
     }
     const url = `${href}${method}?${params}`;
+    return this.http.get(url);
+  }
+  
+  getMovieDetails(id: Number): Observable<any> {
+    const href = this.serviceUrl;
+    const api_key = this.apiKey;
+    const method = this.details;
+    const url = `${href}${method}/${id}?api_key=${api_key}`;
     return this.http.get(url);
   }
 }
