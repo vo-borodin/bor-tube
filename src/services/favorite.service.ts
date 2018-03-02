@@ -8,7 +8,6 @@ import 'rxjs/add/observable/of';
 export class FavoriteService {
   private static key = 'bor_tube_favorite_movies';
   private static favorites: any;
-  private static separator = ','; 
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
@@ -18,27 +17,26 @@ export class FavoriteService {
   
   fill(): Number[] {
     let str = this.storage.get(FavoriteService.key);
-    let a = str ? str.split(FavoriteService.separator) : [];
-    FavoriteService.favorites = {};
-    for (let i of a) {
-      FavoriteService.favorites[i.toString()] = true;
-    }
+    FavoriteService.favorites = str ? JSON.parse(str) : {};
     return FavoriteService.favorites;
   }
   
   write() {
-    let ids = Object.keys(FavoriteService.favorites);
-    let str = ids.join(FavoriteService.separator);
+    let str = JSON.stringify(FavoriteService.favorites);
     this.storage.set(FavoriteService.key, str);
   }
   
   getFavorites(): Observable<Number[]> {
-    return of(this.fill());
+    let favoritesArray = [];
+    for (let k in FavoriteService.favorites) {
+      a.push({ "id": k, "title": FavoriteService.favorites[k] });
+    }
+    return of(favoritesArray);
   }
   
-  setState(id: Number, state: boolean) {
+  setState(id: Number, title: string, state: boolean) {
     if (state) {
-      FavoriteService.favorites[id.toString()] = true;
+      FavoriteService.favorites[id.toString()] = title;
     } else {
       delete FavoriteService.favorites[id.toString()];
     }

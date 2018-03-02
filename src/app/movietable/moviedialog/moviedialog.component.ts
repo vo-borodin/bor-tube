@@ -29,6 +29,6 @@ export class MoviedialogComponent {
   }
   
   updateFavorite(value) {
-    this.favoriteService.setState(this.data.id, value);
+    this.favoriteService.setState(this.data.id, this.data.title, value);
   }
 }

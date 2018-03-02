@@ -74,7 +74,7 @@ export class MovietableComponent implements OnInit {
   }
   
   updateFavorite(movie: Movie, value) {
-    this.favoriteService.setState(movie.id, value);
+    this.favoriteService.setState(movie.id, movie.title, value);
   }
   
   clicked(event) {
