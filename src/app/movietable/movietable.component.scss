@@ -1,3 +1,17 @@
+.bor-tube__Movietable_tile {
+  cursor: pointer;
+}
+
 .bor-tube__Movietable_tileHeader {
   font-size: 11px;
+}
+
+.bor-tube__Movietable_favoriteCheckBox {
+  float: right;
+  background-color: dodgerblue;
+}
+
+.bor-tube__Movietable_titleOfTile {
+  float: left;
+  width: 100%;
 }

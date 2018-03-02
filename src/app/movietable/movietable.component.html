@@ -6,13 +6,21 @@
     </mat-placeholder>
   </mat-form-field>
   <mat-grid-list cols="5" rowHeight="4:3" gutterSize="10px">
-    <mat-grid-tile *ngFor="let movie of movies" (click)="openDialog(movie)">
+    <mat-grid-tile *ngFor="let movie of movies" (click)="openDialog(movie)" class="bor-tube__Movietable_tile">
       <mat-grid-tile-header class="bor-tube__Movietable_tileHeader">
         {{movieService.getGenresString(movie.genre_ids)}}
       </mat-grid-tile-header>
       <img [src]="pathToPoster300(movie)">
       <mat-grid-tile-footer>
-        {{movie.title}}
+        <div class="bor-tube__Movietable_titleOfTile">
+          {{movie.title}}
+        </div>
+        <mat-checkbox class="bor-tube__Movietable_favoriteCheckBox"
+                      [ngModel]="isFavorite(movie)"
+                      (ngModelChange)="updateFavorite($event)"
+                      (click)="clicked($event)"
+                      matTooltip="Set / unset as favorite">
+        </mat-checkbox>
       </mat-grid-tile-footer>
     </mat-grid-tile>
   </mat-grid-list>
