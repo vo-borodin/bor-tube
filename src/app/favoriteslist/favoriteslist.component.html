@@ -1,0 +1,13 @@
+<div>
+  <h1>
+    Favorite movies
+  </h1>
+  <mat-list>
+    <mat-list-item *ngFor="let movie of data">
+      <mat-checkbox [ngModel]="true"
+                    (ngModelChange)="remove(movie.id)">
+        {{movie.title}}
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+</div>

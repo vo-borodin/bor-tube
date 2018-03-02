@@ -17,15 +17,19 @@ import { SharedModule } from './shared/shared.module';
 
 import { MatInputModule, MatProgressSpinnerModule, MatPaginatorModule,
          MatSortModule, MatTableModule } from "@angular/material";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { MovietableComponent } from './movietable/movietable.component';
 import { MoviedialogComponent } from './movietable/moviedialog/moviedialog.component';
+import { FavoritesListComponent } from './favoriteslist/favoriteslist.component';
 
 import { APP_INITIALIZER } from '@angular/core';
 
 import { MovieService } from '../services/movie.service';
-import { FavoriteService } from '../services/favorite.service'
+import { FavoriteService } from '../services/favorite.service';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -35,7 +39,7 @@ export function getAPI(): string {
   return MOCK_API;
 }
 
-export function init_app(movieService: MovieService
+export function init_app(movieService: MovieService,
                          favoriteService: FavoriteService) {
   return () => movieService.load().then(() => favoriteService.load())
 }
@@ -46,6 +50,7 @@ export function init_app(movieService: MovieService
     routedComponents,
     MovietableComponent,
     MoviedialogComponent,
+    FavoritesListComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     AppRoutingModule,
@@ -65,7 +70,10 @@ export function init_app(movieService: MovieService
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
 	MatGridListModule,
+    MatListModule,
+    MatDividerModule,
     HttpClientModule,
   ], // modules needed to run this module
   providers: [
@@ -78,10 +86,11 @@ export function init_app(movieService: MovieService
       'useFactory': init_app,
       'deps': [MovieService, FavoriteService],
       'multi': true
-    }
+    },
   ], // additional providers needed for this module
   entryComponents: [
     MoviedialogComponent,
+    FavoritesListComponent,
   ],
   bootstrap: [ AppComponent ],
 })
