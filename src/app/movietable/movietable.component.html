@@ -17,7 +17,7 @@
         </div>
         <mat-checkbox class="bor-tube__Movietable_favoriteCheckBox"
                       [ngModel]="isFavorite(movie)"
-                      (ngModelChange)="updateFavorite($event)"
+                      (ngModelChange)="updateFavorite(movie, $event)"
                       (click)="clicked($event)"
                       matTooltip="Set / unset as favorite">
         </mat-checkbox>

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { MovieService } from '../../../services/movie.service';
+import { FavoriteService } from '../../../services/favorite.service';
 import { Movie } from '../../../models/movie.model';
 
 @Component({
@@ -12,7 +13,8 @@ import { Movie } from '../../../models/movie.model';
 export class MoviedialogComponent {
 
   constructor(public dialogRef: MatDialogRef<MoviedialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Movie) { }
+              @Inject(MAT_DIALOG_DATA) public data: Movie,
+              private favoriteService: FavoriteService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -23,10 +25,10 @@ export class MoviedialogComponent {
   }
   
   isFavorite(): boolean {
-    return false;
+    return this.favoriteService.getState(this.data.id);
   }
   
-  updateFavorite(event) {
-    
+  updateFavorite(value) {
+    this.favoriteService.setState(this.data.id, value);
   }
 }

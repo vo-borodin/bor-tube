@@ -5,6 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MovieService } from '../../services/movie.service';
+import { FavoriteService } from '../../services/favorite.service';
 import { Movie } from '../../models/movie.model';
 import { MoviedialogComponent } from "./moviedialog/moviedialog.component";
 import { Observable } from 'rxjs/Observable';
@@ -33,6 +34,7 @@ export class MovietableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private movieService: MovieService,
+              private favoriteService: FavoriteService,
               public dialog: MatDialog) {}
   
   onModelChange(value) {
@@ -57,10 +59,10 @@ export class MovietableComponent implements OnInit {
   }
   
   pathToPoster300(movie: Movie): string {
-      return MovieService.imageUrl + 'w300' + movie.poster_path;
+    return MovieService.imageUrl + 'w300' + movie.poster_path;
   }
   
-  openDialog(movie): void {
+  openDialog(movie: Movie): void {
     let dialogRef = this.dialog.open(MoviedialogComponent, {
       data: movie,
       width: '700px'
@@ -68,11 +70,11 @@ export class MovietableComponent implements OnInit {
   }
   
   isFavorite(movie: Movie): boolean {
-    return false;
+    return this.favoriteService.getState(movie.id);
   }
   
-  updateFavorite(event) {
-    
+  updateFavorite(movie: Movie, value) {
+    this.favoriteService.setState(movie.id, value);
   }
   
   clicked(event) {

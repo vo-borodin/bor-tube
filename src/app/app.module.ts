@@ -1,6 +1,7 @@
 import { NgModule, Type } from '@angular/core';
 import { BrowserModule, Title }  from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { CovalentHttpModule, IHttpInterceptor } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
@@ -23,7 +24,8 @@ import { MoviedialogComponent } from './movietable/moviedialog/moviedialog.compo
 
 import { APP_INITIALIZER } from '@angular/core';
 
-import { MovieService } from '../services/movie.service'
+import { MovieService } from '../services/movie.service';
+import { FavoriteService } from '../services/favorite.service'
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -33,8 +35,9 @@ export function getAPI(): string {
   return MOCK_API;
 }
 
-export function init_app(movieService: MovieService) {
-  return () => movieService.load()
+export function init_app(movieService: MovieService
+                         favoriteService: FavoriteService) {
+  return () => movieService.load().then(() => favoriteService.load())
 }
 
 @NgModule({
@@ -48,6 +51,7 @@ export function init_app(movieService: MovieService) {
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    StorageServiceModule,
     SharedModule,
     CovalentHttpModule.forRoot({
       interceptors: [{
@@ -68,10 +72,11 @@ export function init_app(movieService: MovieService) {
     httpInterceptorProviders,
     Title,
     MovieService,
+    FavoriteService,
     {
       'provide': APP_INITIALIZER,
       'useFactory': init_app,
-      'deps': [MovieService],
+      'deps': [MovieService, FavoriteService],
       'multi': true
     }
   ], // additional providers needed for this module
