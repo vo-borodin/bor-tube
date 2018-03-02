@@ -1,8 +1,17 @@
-<div layout-gt-xs="row">
-  <img [src]="pathToPoster300()">
-  <div layout="column">
-    <h1 class="bor-tube__Moviedialog__header">
-      {{data.title}}
-    </h1>
+<div>
+  <mat-checkbox [ngModel]="isFavorite()"
+                (ngModelChange)="updateFavorite($event)"
+                matTooltip="Set / unset as favorite"
+                class="bor-tube__Moviedialog_favoriteCheckBox">
+  </mat-checkbox>
+  <div layout-gt-xs="row">
+    <img [src]="pathToPoster300()">
+      <div layout="column">
+        <div layout="row">
+          <h1 class="bor-tube__Moviedialog__header">
+            {{data.title}}
+          </h1>
+        </div>
+      </div>
   </div>
 </div>

@@ -21,4 +21,12 @@ export class MoviedialogComponent {
   pathToPoster300(): string {
     return MovieService.imageUrl + 'w300' + this.data.poster_path;
   }
+  
+  isFavorite(): boolean {
+    return false;
+  }
+  
+  updateFavorite(event) {
+    
+  }
 }
