@@ -1,3 +1,5 @@
+@import '../../theme.scss';
+
 .bor-tube__Movietable_tile {
   cursor: pointer;
 }
@@ -8,7 +10,7 @@
 
 .bor-tube__Movietable_favoriteCheckBox {
   float: right;
-  background-color: dodgerblue;
+  background-color: mat-color($primary);
 }
 
 .bor-tube__Movietable_titleOfTile {

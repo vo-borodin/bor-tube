@@ -1,10 +1,14 @@
 <div>
-  <mat-form-field>
-    <input #input matInput type="text" [ngModel]="searchStr" (ngModelChange)="onModelChange($event)">
-    <mat-placeholder>
-      Title of movie
-    </mat-placeholder>
-  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <input matInput type="text"
+                      [ngModel]="searchStr"
+                      (ngModelChange)="onModelChange($event)">
+      <mat-placeholder>
+        Search movie...
+      </mat-placeholder>
+    </mat-form-field>
+  </div>
   <mat-grid-list cols="5" rowHeight="4:3" gutterSize="10px">
     <mat-grid-tile *ngFor="let movie of movies" (click)="openDialog(movie)" class="bor-tube__Movietable_tile">
       <mat-grid-tile-header class="bor-tube__Movietable_tileHeader">

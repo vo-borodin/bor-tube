@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -19,14 +19,14 @@ export class MovieService {
   public static genres: any;
   public static imageUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(@Inject(HttpClient)private http: HttpClient) { }
   
   load() {
     const href = this.serviceUrl;
     const api_key = this.apiKey;
     let method = this.config;
     return this.http.get(`${href}${method}?api_key=${api_key}`).map((data: Response) => {
-      MovieService.imageUrl = data['images'].base_url;
+      MovieService.imageUrl = data['images'].base_url.replace('http', 'https');
       method = this.genre;
       return this.http.get(`${href}${method}?api_key=${api_key}`).map((data: Response) => {
         MovieService.genres = {};

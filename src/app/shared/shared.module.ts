@@ -33,8 +33,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 
-import { NgxChartsModule, } from '@swimlane/ngx-charts';
-
 const ANGULAR_MODULES: any[] = [
   FormsModule, ReactiveFormsModule, HttpModule, HttpClientModule,
 ];
@@ -54,17 +52,12 @@ const COVALENT_MODULES: any[] = [
   CovalentCommonModule, CovalentDialogsModule,
 ];
 
-const CHART_MODULES: any[] = [
-  NgxChartsModule,
-];
-
 @NgModule({
   imports: [
     CommonModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,
-    CHART_MODULES,
   ],
   declarations: [
 
@@ -73,7 +66,6 @@ const CHART_MODULES: any[] = [
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,
-    CHART_MODULES,
   ],
 })
 export class SharedModule { }

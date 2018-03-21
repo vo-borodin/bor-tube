@@ -4,19 +4,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { CovalentHttpModule, IHttpInterceptor } from '@covalent/http';
-import { CovalentHighlightModule } from '@covalent/highlight';
-import { CovalentMarkdownModule } from '@covalent/markdown';
 
 import { AppComponent } from './app.component';
-import { RequestInterceptor } from '../config/interceptors/request.interceptor';
-import { MOCK_API } from '../config/api.config';
 
 import { routedComponents, AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from './shared/shared.module';
 
-import { MatInputModule, MatProgressSpinnerModule, MatPaginatorModule,
-         MatSortModule, MatTableModule } from "@angular/material";
+import { MatProgressSpinnerModule, MatPaginatorModule,
+         MatSortModule, MatTableModule, MatDialogModule } from "@angular/material";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
@@ -30,14 +27,6 @@ import { APP_INITIALIZER } from '@angular/core';
 
 import { MovieService } from '../services/movie.service';
 import { FavoriteService } from '../services/favorite.service';
-
-const httpInterceptorProviders: Type<any>[] = [
-  RequestInterceptor,
-];
-
-export function getAPI(): string {
-  return MOCK_API;
-}
 
 export function init_app(movieService: MovieService,
                          favoriteService: FavoriteService) {
@@ -58,15 +47,10 @@ export function init_app(movieService: MovieService,
     BrowserAnimationsModule,
     StorageServiceModule,
     SharedModule,
-    CovalentHttpModule.forRoot({
-      interceptors: [{
-        interceptor: RequestInterceptor, paths: ['**'],
-      }],
-    }),
-    CovalentHighlightModule,
-    CovalentMarkdownModule,
-    MatInputModule,
+    CovalentHttpModule,
     MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
@@ -77,7 +61,6 @@ export function init_app(movieService: MovieService,
     HttpClientModule,
   ], // modules needed to run this module
   providers: [
-    httpInterceptorProviders,
     Title,
     MovieService,
     FavoriteService,
@@ -89,6 +72,7 @@ export function init_app(movieService: MovieService,
     },
   ], // additional providers needed for this module
   entryComponents: [
+    MovietableComponent,
     MoviedialogComponent,
     FavoritesListComponent,
   ],
